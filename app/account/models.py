@@ -1,6 +1,6 @@
 import enum
 
-from sqlalchemy import Column, Integer, String, DateTime, func, Enum as SQLEnum, Boolean, JSON
+from sqlalchemy import Column, Integer, String, DateTime, func, Enum as SQLEnum, Boolean, JSON, Text
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -29,11 +29,10 @@ class Account(Base):
     unique_account_id = Column(String(255), index=True)
     account_type = Column(SQLEnum(AccountType))
     account_provider = Column(SQLEnum(AccountProvider))
-    account_name = Column(String(255), unique=True)
+    name = Column(String(255))
+    description = Column(Text())
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    created_by = Column(Integer)
-    updated_by = Column(Integer)
 
 
 class Connection(Base):

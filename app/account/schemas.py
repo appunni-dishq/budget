@@ -3,15 +3,21 @@ from typing import Optional, Dict
 
 from pydantic import BaseModel
 
-from .models import AccountProvider
+from .models import AccountProvider, AccountType
 
 
 class AccountBase(BaseModel):
-    account_name: str
+    name: str
+    account_no: str
+    description: str
+    balance_string: str
+    connection_id: int
+    account_type: AccountType
+    account_provider: AccountProvider
 
 
 class AccountCreate(AccountBase):
-    created_by: int
+    pass
 
 
 class AccountUpdate(AccountBase):
@@ -28,7 +34,7 @@ class Account(AccountBase):
 
 
 class ConnectionBase(BaseModel):
-    conn_id: str
+    conn_name: str
     provider: AccountProvider
     login_url: str
     credentials: Dict[str, str]

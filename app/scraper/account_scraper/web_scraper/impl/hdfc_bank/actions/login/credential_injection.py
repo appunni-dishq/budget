@@ -23,4 +23,3 @@ class HDFCCredentialInjection(CredentialInjection):
         await frame.locator(".loginData > input[name='fldPassword']").fill(credentials.password)
         await frame.locator(".pwd_field.sec_field > input[type='checkbox']").click()
         await frame.locator(".loginData > a").click()
-        await page.frame_locator("[name='login_page']")
